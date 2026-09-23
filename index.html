@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IELTS Speaking 4 · Think Out Loud</title>
+<style>
+:root{
+  --cran:#53357D; --cran-d:#3A2359; --pink:#E7DDF6;
+  --mint:#C04A2E; --mint-l:#FBE7E0; --bg:#F5F1F8;
+  --ink:#241C2E; --soft:#605571; --line:#D8CFE6; --white:#fff;
+  --ok:#1F8A5B; --bad:#B3261E;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI","Trebuchet MS",system-ui,-apple-system,Roboto,sans-serif;
+  font-size:19px;line-height:1.55}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0 0 .5em}
+.ar{font-family:"Segoe UI",Tahoma,"Arial",sans-serif;direction:rtl;unicode-bidi:isolate}
+button{font:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+mark{background:var(--pink);color:var(--cran-d);padding:0 .2em;border-radius:4px;font-weight:600}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:var(--cran);color:#fff;
+  padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top,0px));
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bar .brand{font-family:Georgia,serif;font-size:1.15rem;font-weight:700;cursor:pointer;background:none;border:0;color:#fff;padding:0}
+.bar .grow{flex:1}
+.pts{background:#fff;color:var(--cran-d);border-radius:999px;padding:4px 14px;font-weight:700}
+.tbtn{background:transparent;border:2px solid rgba(255,255,255,.6);color:#fff;border-radius:10px;padding:5px 12px;font-size:.9rem}
+.tbtn:hover{background:rgba(255,255,255,.15)}
+
+main{max-width:1040px;margin:0 auto;padding:24px 18px 60px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;margin:10px 0 34px}
+.hero h1{font-size:2.6rem;color:var(--cran-d)}
+.hero p{color:var(--soft);margin:.2em 0 1em;max-width:34em}
+.chat{display:flex;flex-direction:column;gap:12px}
+.bub{max-width:88%;padding:14px 18px;border-radius:20px;font-size:1.05rem}
+.bub.ex{background:#fff;border:2px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
+.bub.me{background:var(--cran);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.bub small{display:block;font-size:.78rem;opacity:.75;margin-bottom:2px}
+.mic{background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px;text-align:center}
+.mic .bars path{transform-origin:center;animation:pulse 1.6s ease-in-out infinite}
+.mic .bars path:nth-child(2n){animation-delay:.2s}
+.mic .bars path:nth-child(3n){animation-delay:.4s}
+@keyframes pulse{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.namecard{display:inline-block;background:var(--pink);border-radius:10px;padding:6px 18px;margin-top:6px}
+.namecard span{display:block;font-size:.75rem;color:var(--cran-d);letter-spacing:.08em;text-transform:uppercase}
+.namecard b{font-family:Georgia,serif;font-size:1.2rem;color:var(--cran-d)}
+.facts{background:var(--mint-l);border-left:6px solid var(--mint);border-radius:0 14px 14px 0;padding:16px 20px;margin-bottom:30px}
+.facts ul{margin:.3em 0 0;padding-left:1.2em}
+.facts li{margin:.25em 0}
+
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.tile{background:#fff;border:2px solid var(--line);border-radius:16px;padding:18px;text-align:left;color:var(--ink);position:relative;transition:border-color .15s}
+.tile:hover{border-color:var(--cran)}
+.tile .ico{font-size:2rem}
+.tile h3{margin:.3em 0 .2em;font-size:1.3rem}
+.tile .prog{height:8px;background:var(--mint-l);border-radius:8px;overflow:hidden;margin-top:10px}
+.tile .prog i{display:block;height:100%;background:var(--mint)}
+.tile .badge{position:absolute;top:12px;right:14px;font-size:1.5rem}
+.tile.final{background:var(--cran-d);color:#fff;border-color:var(--cran-d)}
+.tile.final:hover{border-color:var(--mint)}
+
+/* topic page */
+.back{background:none;border:0;color:var(--cran);font-weight:600;padding:0;margin-bottom:12px}
+.thead{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.thead .ico{font-size:2.6rem}
+.thead h2{font-size:2rem;margin:0;color:var(--cran-d)}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.step{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;color:var(--ink);font-size:.95rem}
+.step.on{background:var(--cran);border-color:var(--cran);color:#fff}
+.step.done::after{content:" ✓";color:var(--mint);font-weight:700}
+.step.on.done::after{color:#fff}
+.panel{background:#fff;border:2px solid var(--line);border-radius:18px;padding:24px}
+.panel > p.lead{color:var(--soft);margin-top:0}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{border:2px solid var(--line);border-radius:14px;padding:16px;background:var(--bg)}
+.card .ph{font-size:1.2rem;font-weight:700;color:var(--cran-d)}
+.card .ar{font-size:1.15rem;color:var(--mint);margin:.2em 0}
+.card .eg{font-style:italic;color:var(--soft)}
+.card.seen{border-color:var(--mint);background:var(--mint-l)}
+.say{margin-top:10px;background:#fff;border:2px solid var(--mint);color:var(--mint);border-radius:10px;padding:5px 12px;font-size:.9rem;font-weight:600}
+.card.seen .say{background:var(--mint);color:#fff}
+
+.band{border-radius:16px;padding:16px 18px;margin:12px 0;border:2px solid var(--line);background:var(--bg)}
+.band h4{margin:0 0 6px;font-size:1rem;display:flex;gap:10px;align-items:center}
+.band .lvl{border-radius:999px;padding:2px 12px;color:#fff;font-weight:700}
+.b5 .lvl{background:#8A8F91}.b6 .lvl{background:var(--mint)}.b7 .lvl{background:var(--cran)}
+.band .txt{font-size:1.08rem}
+.why{margin-top:10px;background:#fff;border-radius:10px;padding:10px 14px;border-left:5px solid var(--mint);display:none}
+.why.show{display:block}
+.whyb{margin-top:8px;background:none;border:2px solid var(--ink);border-radius:10px;padding:4px 12px;font-size:.9rem}
+
+.q{font-size:1.2rem;font-weight:700;margin:0 0 12px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:12px 16px;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--cran)}
+.opt.right{background:#E0F3E9;border-color:var(--ok)}
+.opt.wrong{background:#FBE5E3;border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{margin-top:12px;padding:12px 16px;border-radius:12px;display:none}
+.fb.show{display:block}
+.fb.good{background:#E0F3E9;color:#12593A}
+.fb.poor{background:#FBE5E3;color:#7E1A14}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px;flex-wrap:wrap}
+.btn{background:var(--cran);color:#fff;border:0;border-radius:12px;padding:10px 20px;font-weight:600}
+.btn:hover{background:var(--cran-d)}
+.btn.ghost{background:#fff;color:var(--cran);border:2px solid var(--cran)}
+.btn:disabled{opacity:.45;cursor:default}
+.count{color:var(--soft);font-size:.95rem}
+
+.gap{font-size:1.15rem;line-height:2.3}
+.gap select{font:inherit;font-size:1rem;padding:4px 8px;border-radius:8px;border:2px solid var(--cran);background:var(--pink);color:var(--cran-d);max-width:100%}
+.gap select.ok{border-color:var(--ok);background:#E0F3E9;color:#12593A}
+.gap select.no{border-color:var(--bad);background:#FBE5E3}
+
+.speak{border:2px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
+.speak.done{border-color:var(--mint);background:var(--mint-l)}
+.speak .starter{background:#fff;border:2px dashed var(--mint);border-radius:10px;padding:8px 12px;margin:8px 0;display:inline-block}
+.timer{height:14px;background:var(--line);border-radius:10px;overflow:hidden;margin:12px 0 6px}
+.timer i{display:block;height:100%;width:0;background:var(--mint);transition:width .25s linear}
+.timer.think i{background:#C04A2E}
+.tlabel{font-weight:700;font-size:.95rem;min-height:1.4em}
+.checks label{display:block;margin:4px 0}
+.checks input{width:20px;height:20px;vertical-align:middle;margin-right:8px;accent-color:var(--mint)}
+
+.result{text-align:center;padding:10px}
+.result .big{font-family:Georgia,serif;font-size:3.2rem;color:var(--cran-d);font-weight:700}
+.cert{display:none;margin:24px auto 0;max-width:760px;border:10px double var(--cran);border-radius:6px;padding:36px;text-align:center;background:#fff}
+.cert.show{display:block}
+.cert h2{font-size:2.2rem;color:var(--cran-d)}
+.cert .nm{font-family:Georgia,serif;font-size:2rem;border-bottom:2px solid var(--mint);display:inline-block;padding:0 30px 4px;margin:10px 0}
+.namein{font:inherit;padding:8px 12px;border-radius:10px;border:2px solid var(--line);width:min(340px,100%)}
+
+footer{text-align:center;color:var(--soft);font-size:.9rem;padding:20px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:12px;z-index:60;opacity:0;transition:opacity .3s}
+.toast.show{opacity:1}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .hero h1{font-size:2rem}
+  body{font-size:18px}
+  .panel{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.mic .bars path{animation:none}}
+@media print{
+  body *{visibility:hidden}
+  .cert,.cert *{visibility:visible}
+  .cert{position:absolute;left:0;top:0;width:100%;border-color:var(--cran)}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <button class="brand" onclick="goHome()">Speaking 4 · Think Out Loud</button>
+  <span class="grow"></span>
+  <span class="pts" id="pts">0 points</span>
+  <button class="tbtn" onclick="saveJSON()">Save progress</button>
+  <button class="tbtn" onclick="document.getElementById('loadf').click()">Load progress</button>
+  <input type="file" id="loadf" accept=".json" hidden onchange="loadJSON(event)">
+</div>
+<main id="app"></main>
+<footer>Designed by: Nazila Motahari</footer>
+<canvas id="confetti"></canvas>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ DATA ============ */
+const TOPICS = [
+{id:"opinions", name:"Opinions and reasons", ico:"💭",
+ phrases:[
+  ["I'd say that…","أعتقد أن…","I'd say that technology has helped more than it has harmed."],
+  ["It seems to me that…","يبدو لي أن…","It seems to me that young people read less than before."],
+  ["I'd argue that…","أرى أن…","I'd argue that experience matters more than qualifications."],
+  ["From my point of view, …","من وجهة نظري، …","From my point of view, both parents should work if they want to."],
+  ["That's mainly because…","هذا أساسًا لأن…","That's mainly because families are smaller now."],
+  ["I strongly believe that…","أؤمن بشدة أن…","I strongly believe that schools should teach money skills."]],
+ ladder:{q:"Do you think governments should pay for public transport?",
+  b5:"Yes. Government must pay. It is good for people. Bus is cheap.",
+  n5:"Short and repetitive. Part 3 answers need an opinion plus a developed reason.",
+  b6:"[[I'd say that]] they should, yes. [[That's mainly because]] cheaper transport takes cars off the road, which reduces traffic and pollution in big cities.",
+  n6:"A clear opinion, then one reason developed into a result.",
+  b7:"[[I'd argue that]] they should, at least in large cities. [[That's mainly because]] public transport only works if it's cheaper and faster than driving. Here in Abu Dhabi, people will only leave their cars at home if the alternative genuinely saves them time.",
+  n7:"An opinion with a condition (“at least in large cities”), a reason and a local example."},
+ upgrade:[
+  {q:"Why do people move to big cities?",o:["Because city is good.","I'd say the main reason is work. There are simply more jobs in cities, especially in banking and technology.","I moved to Abu Dhabi last year with my family."],c:1,
+   w:"B talks about people in general and gives a reason. C answers about the speaker — that's a Part 1 answer, not Part 3."},
+  {q:"Should schools teach cooking?",o:["Yes I think yes.","Cooking is when you prepare food.","From my point of view, they should. Many young people leave home without knowing how to cook a healthy meal, so they rely on takeaways."],c:2,
+   w:"C gives an opinion, a reason and a consequence."},
+  {q:"Is it important for children to learn a second language?",o:["I strongly believe it is. Children pick up languages much faster than adults, and it opens doors later in their careers.","Yes, language is important for all people in the world always.","My English is not very good."],c:0,
+   w:"A supports the opinion with two reasons. B sounds memorised and says nothing specific."}],
+ gap:{t:"{0} online learning will keep growing. {1} it saves time and money for both students and universities. {2}, though, that nothing replaces a real classroom for speaking practice. {3} universities should offer both.",
+  a:["I'd say that","That's mainly because","It seems to me","I'd argue that"],x:["In general","I doubt that"]},
+ speak:[["Do you think public transport should be free?","I'd say that … That's mainly because …"],
+  ["Should young people be taught about money at school?","From my point of view, …"],
+  ["Is it better to work for a big company or a small one?","I'd argue that …, mainly because …"]]},
+
+{id:"general", name:"Generalising carefully", ico:"🌍",
+ phrases:[
+  ["In general, …","بشكل عام، …","In general, people are busier than they used to be."],
+  ["Most people tend to…","يميل معظم الناس إلى…","Most people tend to shop online these days."],
+  ["It varies from person to person","يختلف من شخص لآخر","It varies from person to person, of course."],
+  ["On the whole, …","إجمالًا، …","On the whole, I think it's a positive change."],
+  ["It depends on…","يعتمد على…","It depends on the age of the child."],
+  ["Broadly speaking, …","بصفة عامة، …","Broadly speaking, city life is faster."]],
+ ladder:{q:"Do young people in your country enjoy reading?",
+  b5:"No. Young people don't read. They use phone all day.",
+  n5:"Too absolute, and it repeats the same idea twice.",
+  b6:"[[In general]], not as much as older generations. [[Most people tend to]] read on their phones now — articles and social media rather than books.",
+  n6:"A careful generalisation, then a specific example of what they do read.",
+  b7:"[[Broadly speaking]], reading habits have changed rather than disappeared. [[It varies from person to person]], but the students I know [[tend to]] read online all day — news, subtitles, threads — so they read constantly without calling it reading.",
+  n7:"Avoids a black-and-white answer, softens the claim and adds an original idea."},
+ upgrade:[
+  {q:"Do men and women choose different careers?",o:["All men choose engineering. All women choose teaching.","Broadly speaking, yes, although it's changing quickly — there are far more women in engineering here than ten years ago.","I don't know any men."],c:1,
+   w:"B generalises carefully and notes a change. A is too absolute, and examiners notice."},
+  {q:"Are older people good at technology?",o:["No, old people can't use technology.","It depends on the person. My grandfather video calls us every day, whereas some of my uncles avoid anything new.","Old people are old."],c:1,
+   w:"B refuses the stereotype and gives two contrasting examples."},
+  {q:"Do people in your country eat healthily?",o:["On the whole, less than before. Most people tend to eat out more, and restaurant portions are much bigger.","Yes, everyone in my country always eats very healthy food.","Health food is food which is healthy."],c:0,
+   w:"A softens the claim with “on the whole” and explains what changed."}],
+ gap:{t:"{0}, people in my country travel more than they used to. {1} choose short trips to nearby countries. Of course, {2} — it {3} income and family size.",
+  a:["In general","Most people tend to","it varies from person to person","depends on"],x:["I strongly believe that","I doubt that"]},
+ speak:[["Do people in your country prefer city life or country life?","In general, … although it varies …"],
+  ["Are young people today more independent than in the past?","Broadly speaking, … Most people tend to …"],
+  ["Do people read less than they used to?","It depends on … On the whole, …"]]},
+
+{id:"past", name:"Past and present", ico:"🕰️",
+ phrases:[
+  ["In the past, people used to…","في الماضي، اعتاد الناس أن…","In the past, people used to write letters."],
+  ["These days, …","في هذه الأيام، …","These days, everything is done on an app."],
+  ["compared with the past","مقارنةً بالماضي","Compared with the past, families are smaller."],
+  ["There's been a significant increase in…","حدثت زيادة كبيرة في…","There's been a significant increase in online shopping."],
+  ["Things have changed dramatically","تغيّرت الأمور بشكل كبير","Things have changed dramatically in twenty years."],
+  ["Whereas in the past…","في حين أنه في الماضي…","Whereas in the past children played outside, now they play online."]],
+ ladder:{q:"How has family life changed in your country?",
+  b5:"Before family is big. Now family is small. Everything change.",
+  n5:"The idea is right, but the tenses are wrong and there are no details.",
+  b6:"[[Things have changed dramatically]]. [[In the past, people used to]] live with their grandparents in one house, [[whereas]] [[these days]] most young couples move into their own flat.",
+  n6:"A past habit with “used to”, the present with “these days”, and a clear contrast.",
+  b7:"[[Things have changed dramatically]], mainly because of housing and work. [[In the past]], three generations [[used to]] share one house, [[whereas]] now couples often live in a different emirate from their parents. [[There's been a significant increase in]] video calls for exactly that reason.",
+  n7:"Gives a cause, a contrast and a consequence rather than just naming the change."},
+ upgrade:[
+  {q:"How has shopping changed?",o:["Shopping change a lot.","There's been a significant increase in online shopping, whereas in the past people spent whole weekends at the mall.","Shopping is when you buy things from shops."],c:1,
+   w:"B names the change and contrasts it with the past. A has a tense mistake and no detail."},
+  {q:"Complete: “In the past, children ___ outside more often.”",o:["used to play","use to play","are playing","will play"],c:0,
+   w:"“Used to + verb” describes a past habit that has stopped."},
+  {q:"Did people communicate differently twenty years ago?",o:["Yes. Phone is different.","Yes, completely. People used to phone each other or write letters, whereas these days we send a voice note without thinking.","Communication is very important for all humans."],c:1,
+   w:"B contrasts then and now with real examples. C is a memorised-sounding general statement."}],
+ gap:{t:"{0} in the number of people working from home. {1}, almost everyone travelled to an office, {2} now many of my relatives work two days a week at home. {3} the last five years.",
+  a:["There's been a significant increase","In the past","whereas","Things have changed dramatically in"],x:["It depends on","I imagine that"]},
+ speak:[["How has education changed in your country?","In the past, students used to … whereas these days …"],
+  ["Do families spend more or less time together than before?","Compared with the past, …"],
+  ["How have shopping habits changed?","There's been a significant increase in …"]]},
+
+{id:"future", name:"Talking about the future", ico:"🔮",
+ phrases:[
+  ["I imagine that…","أتخيّل أن…","I imagine that most cars will be electric."],
+  ["It's likely that…","من المرجح أن…","It's likely that more people will work remotely."],
+  ["will probably / might well","على الأرجح / قد…","Cash will probably become rare."],
+  ["If this continues, …","إذا استمر هذا، …","If this continues, cities will become very crowded."],
+  ["I doubt that…","أشك في أن…","I doubt that books will disappear."],
+  ["In the next decade, …","في العقد القادم، …","In the next decade, AI will change most jobs."]],
+ ladder:{q:"How do you think people will travel in the future?",
+  b5:"In future people travel by flying car. It will be good.",
+  n5:"One idea only, and “people travel” should be “people will travel”.",
+  b6:"[[I imagine that]] most cars [[will probably]] be electric within ten years. [[It's likely that]] public transport will improve too, because cities are getting so crowded.",
+  n6:"Two predictions of different strength, plus a reason.",
+  b7:"[[In the next decade]], I think the real change will be electric and self-driving cars rather than anything dramatic like flying taxis. [[If this continues]], city centres [[might well]] ban ordinary cars completely — although [[I doubt that]] will happen in smaller towns.",
+  n7:"A realistic prediction, a consequence, and a limit on the claim."},
+ upgrade:[
+  {q:"Will people still read printed books in fifty years?",o:["No, all books will be gone.","I doubt they'll disappear completely, although it's likely that most reading will happen on screens.","Books are good for reading."],c:1,
+   w:"B makes a careful prediction with two different strengths. A is too extreme."},
+  {q:"Complete: “If this ___, cities will become even more crowded.”",o:["continues","continue","continued","will continue"],c:0,
+   w:"In a first conditional, the “if” part uses the present simple."},
+  {q:"How will technology change education?",o:["Technology is the future of everything for all students.","I imagine that more lessons will be online, but I doubt teachers will ever be replaced — students need someone to push them.","Technology is very good for students, very good."],c:1,
+   w:"B predicts a change and then sets a limit on it, which sounds thoughtful."}],
+ gap:{t:"{0} most shops will accept only cards. {1} cash will disappear completely, though — older people still prefer it. {2}, banks {3} close many of their branches.",
+  a:["It's likely that","I doubt that","In the next decade","will probably"],x:["In the past","It varies from person to person"]},
+ speak:[["How will cities change in the next twenty years?","I imagine that … It's likely that …"],
+  ["Will people work fewer hours in the future?","If this continues, … although I doubt that …"],
+  ["Which jobs might disappear in the future?","In the next decade, … will probably …"]]},
+
+{id:"balance", name:"Both sides of an issue", ico:"⚖️",
+ phrases:[
+  ["On the one hand… on the other hand…","من ناحية… ومن ناحية أخرى…","On the one hand it's cheaper, on the other hand it's slower."],
+  ["Some people argue that…, however…","يرى البعض أن…، ومع ذلك…","Some people argue that exams are unfair, however they are easy to compare."],
+  ["Admittedly, … but…","صحيح أن…، لكن…","Admittedly, it costs a lot, but the results are worth it."],
+  ["There are pros and cons","هناك إيجابيات وسلبيات","There are pros and cons to studying abroad."],
+  ["Having said that, …","ومع ذلك، …","Having said that, not everyone can afford it."],
+  ["It's a difficult balance","إنه توازن صعب","It's a difficult balance between work and family."]],
+ ladder:{q:"Is it better for students to study abroad?",
+  b5:"Yes, study abroad is good. Student learn language. But it is expensive.",
+  n5:"The ideas are reasonable, but they are not connected and the grammar slips.",
+  b6:"[[There are pros and cons]]. [[On the one hand]], students improve their English much faster; [[on the other hand]], it's expensive and many feel homesick in the first year.",
+  n6:"A balanced answer with both sides clearly signposted.",
+  b7:"[[Admittedly]], studying abroad improves both language and independence, [[but]] it only really works if the student is ready for it. [[Having said that]], I think a shorter exchange — say one semester — gives most of the benefit at a fraction of the cost. [[It's a difficult balance]].",
+  n7:"Weighs both sides, then offers the speaker's own solution. This is what Band 7 discussion sounds like."},
+ upgrade:[
+  {q:"Are social media good or bad for teenagers?",o:["Social media is very bad. Finish.","There are pros and cons. They keep friends in touch, but they also make teenagers compare themselves with strangers all day.","Social media is an application on the phone."],c:1,
+   w:"B gives both sides. A takes an extreme position and then stops."},
+  {q:"Should students have part-time jobs?",o:["Yes, work is good and study is good.","Admittedly, a job takes time away from studying, but it teaches responsibility — and most students need the money anyway.","No."],c:1,
+   w:"B concedes a disadvantage first, which makes the opinion sound stronger."},
+  {q:"Is tourism good for a country?",o:["Tourist come and go.","Tourism is when people visit other countries.","Some people argue that tourism damages local culture, however it creates thousands of jobs, so it's a difficult balance."],c:2,
+   w:"C reports one view, answers it with another, and closes with a judgement."}],
+ gap:{t:"{0} to living in a big city. {1}, there are more jobs and better hospitals; {2}, the traffic and the rent are terrible. {3}, I'd still choose the city for the opportunities.",
+  a:["There are pros and cons","On the one hand","on the other hand","Having said that"],x:["I doubt that","In general"]},
+ speak:[["Is it better to live in a city or in the countryside?","There are pros and cons. On the one hand …"],
+  ["Should university education be free for everyone?","Some people argue that …, however …"],
+  ["Do mobile phones bring families closer or push them apart?","Admittedly, … but …"]]},
+
+{id:"hard", name:"Handling hard questions", ico:"🧗",
+ phrases:[
+  ["That's a big question.","هذا سؤال كبير.","That's a big question. Let me start with education."],
+  ["I'm not an expert, but…","لستُ خبيرًا، لكن…","I'm not an expert, but I'd guess it's about cost."],
+  ["I've never thought about that, but I'd guess…","لم أفكر في ذلك من قبل، لكن أظن…","I've never thought about that, but I'd guess it's quite rare."],
+  ["It's hard to generalise, but…","من الصعب التعميم، لكن…","It's hard to generalise, but I'd say most families do."],
+  ["I can only speak for my country, but…","لا أستطيع التحدث إلا عن بلدي، لكن…","I can only speak for my country, but here it's very common."],
+  ["To put it simply, …","ببساطة، …","To put it simply, people want convenience."]],
+ ladder:{q:"Why do you think crime rates are higher in some countries than in others?",
+  b5:"I don't know. Sorry. It is difficult question. I don't know about crime.",
+  n5:"The student gives up. In Part 3 you are not expected to know facts — only to give an opinion.",
+  b6:"[[That's a big question]]. [[I'm not an expert, but]] I'd guess it's mainly about jobs — where unemployment is high, people are more likely to break the law.",
+  n6:"Admits uncertainty and still produces a full opinion with a reason.",
+  b7:"[[That's a big question]], and [[I can only speak for my country, but]] I'd say it comes down to opportunity. [[To put it simply]], where young people have jobs and something to lose, crime tends to be lower. [[It's hard to generalise]], though, because culture and policing matter too.",
+  n7:"Handles an unfamiliar topic with confidence: opinion, simple explanation, then a limit on the claim."},
+ upgrade:[
+  {q:"How does the economy of your country affect education?",o:["I don't know about economy.","Sorry, next question.","I'm not an expert, but I'd guess a strong economy means better facilities — our colleges have excellent labs, for example."],c:2,
+   w:"C admits it isn't their subject and still gives an opinion with an example. “I don't know” ends the discussion."},
+  {q:"Do all countries face the same environmental problems?",o:["Yes, all countries are the same.","It's hard to generalise, but I'd say water is the biggest issue here, whereas in Europe it's probably air quality.","The environment is nature, animals and trees."],c:1,
+   w:"B refuses to over-generalise and compares two places."},
+  {q:"Why do people like to photograph their food?",o:["I don't take photos of food.","I've never thought about that, but I'd guess people want to share an experience — a photo is faster than describing the meal.","A food photo is a photo of food."],c:1,
+   w:"B turns an unexpected question into a reasonable theory. A only talks about the speaker."}],
+ gap:{t:"{0} — I'll try. {1}, I'd guess the main reason is cost. {2}, but families in my city choose government schools because they're free and close to home. {3}, money decides it.",
+  a:["That's a big question","I'm not an expert","I can only speak for my country","To put it simply"],x:["I doubt that","On the one hand"]},
+ speak:[["Why do some people move abroad to work?","That's a big question. I'm not an expert, but …"],
+  ["How does the weather affect people's lifestyle in your country?","I can only speak for my country, but …"],
+  ["Why are some sports more popular than others?","I've never thought about that, but I'd guess …"]]}
+];
+
+const FINAL = [
+ {q:"Part 3 questions are mostly about…",o:["your family and daily life","society and general ideas","your hometown","your hobbies"],c:1},
+ {q:"Complete: “In the past, people ___ letters.”",o:["used to write","use to write","are writing","will write"],c:0},
+ {q:"Which answer suits Part 3 best? (Q: Why do people move to cities?)",o:["I moved to Dubai last year.","I'd say the main reason is work — there are simply more jobs there.","The city is big and good."],c:1},
+ {q:"Which phrase makes a generalisation safer?",o:["All people always…","Most people tend to…","Everyone in the world…","Nobody ever…"],c:1},
+ {q:"Complete: “There's been a significant ___ in online shopping.”",o:["increase","increased","increasing","increasingly"],c:0},
+ {q:"Which phrase introduces the OTHER side of an argument?",o:["On the other hand","That's mainly because","To put it simply","In general"],c:0},
+ {q:"Complete: “If this ___, cities will become more crowded.”",o:["continues","continue","will continue","continuing"],c:0},
+ {q:"Which English phrase matches «من الصعب التعميم»?",o:["It's hard to generalise","I strongly believe","It's likely that","On the whole"],c:0},
+ {q:"The examiner asks about a topic you know nothing about. What's best?",o:["Say “I don't know” and wait.","Say “I'm not an expert, but I'd guess…” and give an opinion.","Change the subject to your family.","Ask for a different question."],c:1},
+ {q:"Which sentence is a careful prediction?",o:["Cash will disappear next year, one hundred per cent.","Cash will probably become less common over the next decade.","Cash is gone."],c:1},
+ {q:"Complete: “Admittedly it's expensive, ___ the experience is worth it.”",o:["but","because","so","whereas"],c:0},
+ {q:"Which answer gives an opinion AND a reason?",o:["Yes, I think so.","Yes — mainly because smaller families need less space.","Maybe. I don't know."],c:1},
+ {q:"How long should a Part 3 answer usually be?",o:["One or two words","Longer than Part 1 — around three to five sentences","Exactly two minutes","One short sentence"],c:1},
+ {q:"Which phrase compares two time periods?",o:["Whereas in the past…","To put it simply…","I'm not an expert…","It depends on…"],c:0},
+ {q:"Which answer sounds most like Band 7?",o:["Yes, technology is good for education.","There are pros and cons. Admittedly, online lessons are convenient, but I doubt they'll ever replace a teacher who can push you.","Technology very good. Very useful for student."],c:1}
+];
+
+const STEPS = [["learn","1 · Learn the phrases"],["ladder","2 · Band 5, 6, 7"],["upgrade","3 · Pick the best answer"],["gap","4 · Complete the answer"],["speak","5 · Your turn"]];
+
+/* ============ STATE ============ */
+function blank(){
+  const s={points:0,name:"",topics:{},final:{best:0}};
+  TOPICS.forEach(t=>s.topics[t.id]={learn:[],ladder:[],upgrade:{},gap:false,gapTried:false,speak:[]});
+  return s;
+}
+let S=blank();
+let view={page:"home",topic:null,step:"learn"};
+
+function addPts(n){S.points+=n;document.getElementById("pts").textContent=S.points+" points";}
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),1800);}
+function mk(s){return s.replace(/\[\[(.+?)\]\]/g,"<mark>$1</mark>");}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+function stepDone(t,st){
+  const p=S.topics[t.id];
+  if(st==="learn")return p.learn.filter(Boolean).length>=t.phrases.length;
+  if(st==="ladder")return (p.ladderSeen||[]).filter(Boolean).length>=3;
+  if(st==="upgrade")return Object.keys(p.upgrade).length>=t.upgrade.length;
+  if(st==="gap")return p.gap;
+  if(st==="speak")return p.speak.filter(Boolean).length>=t.speak.length;
+}
+function topicPct(t){return STEPS.filter(([k])=>stepDone(t,k)).length/STEPS.length;}
+
+/* ============ HOME ============ */
+function setName(v){S.name=v;const e=document.getElementById("hn");if(e)e.textContent=v||"Your name";}
+function goHome(){view={page:"home"};render();window.scrollTo(0,0);}
+function home(){
+  let tiles=TOPICS.map(t=>{const p=topicPct(t);return `
+   <button class="tile" onclick="openTopic('${t.id}')">
+    ${p===1?'<span class="badge" title="Skill complete">🏅</span>':''}
+    <div class="ico">${t.ico}</div><h3>${t.name}</h3>
+    <div class="count">${Math.round(p*100)}% complete</div>
+    <div class="prog"><i style="width:${p*100}%"></i></div>
+   </button>`}).join("");
+  tiles+=`<button class="tile final" onclick="openFinal()"><div class="ico">🏆</div><h3>Final challenge</h3>
+    <div>15 questions · get 80% for your certificate</div>
+    <div style="margin-top:6px;opacity:.85">Best score: ${S.final.best}/15</div></button>`;
+  return `
+  <section class="hero">
+   <div>
+    <h1>Think out loud</h1>
+    <p>Part 3 is a discussion. The examiner stops asking about you and starts asking about people, society and the future. These are the phrases that let you give an opinion, weigh two sides and survive a question you've never thought about.</p>
+    <p class="ar" style="text-align:right">الجزء الثالث نقاش حول المجتمع والمستقبل. هذه العبارات تساعدك على إبداء رأيك وموازنة وجهات النظر والإجابة عن أسئلة لم تفكر فيها من قبل.</p>
+   </div>
+   <div class="mic" aria-hidden="false">
+    <svg viewBox="0 0 340 230" width="100%" role="img"><title>Microphone on the examiner's table</title>
+     <g class="bars" fill="none" stroke="var(--cran)" stroke-linecap="round" stroke-width="7">
+      <path d="M24 108v14" opacity=".30"/><path d="M50 96v38" opacity=".40"/>
+      <path d="M76 80v70" opacity=".55"/><path d="M102 92v46" opacity=".70"/>
+      <path d="M128 66v98" opacity=".85"/>
+      <path d="M212 66v98" opacity=".85"/><path d="M238 92v46" opacity=".70"/>
+      <path d="M264 80v70" opacity=".55"/><path d="M290 96v38" opacity=".40"/>
+      <path d="M316 108v14" opacity=".30"/>
+     </g>
+     <rect x="156" y="36" width="28" height="62" rx="14" fill="var(--mint)"/>
+     <path d="M148 82a22 22 0 0 0 44 0" fill="none" stroke="var(--mint)" stroke-width="5" stroke-linecap="round"/>
+     <path d="M170 104v52" stroke="var(--mint)" stroke-width="5" stroke-linecap="round"/>
+     <rect x="128" y="156" width="84" height="14" rx="7" fill="var(--cran-d)"/>
+     <rect x="20" y="176" width="300" height="9" rx="4" fill="var(--line)"/>
+    </svg>
+    <div class="namecard"><span>Candidate</span><b id="hn">${esc(S.name)||'Your name'}</b></div>
+    <input class="namein" id="heroName" placeholder="Type your name" value="${esc(S.name)}" oninput="setName(this.value)" style="margin-top:10px">
+   </div>
+  </section>
+  <div class="facts">
+   <strong>How Part 3 works</strong>
+   <ul>
+    <li>It lasts four to five minutes and follows on from your Part 2 topic.</li>
+    <li>The questions are about people in general, not about you — so answer about society.</li>
+    <li>Aim for three to five sentences: an opinion, a reason, and an example or the other side.</li>
+   </ul>
+  </div>
+  <h2>Choose a skill</h2>
+  <div class="topics">${tiles}</div>`;
+}
+
+/* ============ TOPIC ============ */
+function openTopic(id){view={page:"topic",topic:id,step:"learn"};render();window.scrollTo(0,0);}
+function setStep(st){view.step=st;stopTimer();render();}
+function curT(){return TOPICS.find(t=>t.id===view.topic);}
+
+function topicPage(){
+  const t=curT();
+  const steps=STEPS.map(([k,l])=>`<button class="step ${view.step===k?'on':''} ${stepDone(t,k)?'done':''}" onclick="setStep('${k}')">${l}</button>`).join("");
+  const body={learn:learn,ladder:ladder,upgrade:upgrade,gap:gap,speak:speak}[view.step](t);
+  const idx=STEPS.findIndex(s=>s[0]===view.step);
+  const next=idx<STEPS.length-1?`<button class="btn" onclick="setStep('${STEPS[idx+1][0]}')">Next: ${STEPS[idx+1][1].split("· ")[1]}</button>`:`<button class="btn" onclick="goHome()">Back to skills</button>`;
+  return `<button class="back" onclick="goHome()">← All skills</button>
+   <div class="thead"><span class="ico">${t.ico}</span><h2>${t.name}</h2></div>
+   <nav class="steps">${steps}</nav>
+   <section class="panel">${body}<div class="nav"><span></span>${next}</div></section>`;
+}
+
+function learn(t){
+  const p=S.topics[t.id];
+  return `<p class="lead">Read each phrase and the example. Say the example out loud, then tap <b>I said it</b>.</p>
+  <div class="cards">${t.phrases.map((ph,i)=>`
+   <div class="card ${p.learn[i]?'seen':''}">
+    <div class="ph">${esc(ph[0])}</div>
+    <div class="ar">${ph[1]}</div>
+    <div class="eg">“${esc(ph[2])}”</div>
+    <button class="say" onclick="said(${i})">${p.learn[i]?'✓ Said it':'🗣 I said it'}</button>
+   </div>`).join("")}</div>`;
+}
+function said(i){const p=S.topics[view.topic];if(!p.learn[i]){p.learn[i]=true;addPts(2);checkBadge();}render();}
+
+function ladder(t){
+  const L=t.ladder,p=S.topics[t.id];
+  const b=(k,n,lvl)=>`<div class="band b${lvl}"><h4><span class="lvl">Band ${lvl}</span></h4>
+    <div class="txt">${mk(esc(L["b"+lvl]))}</div>
+    <button class="whyb" onclick="why(${k})">${p.ladder[k]?'Hide':'Why is this Band '+lvl+'?'}</button>
+    <div class="why ${p.ladder[k]?'show':''}">${esc(L["n"+lvl])}</div></div>`;
+  return `<p class="lead">Three students answer the same question. Read all three, then open each explanation. The <mark>highlighted</mark> words are the discussion phrases.</p>
+   <div class="bub ex" style="margin-bottom:8px"><small>Examiner</small>${esc(L.q)}</div>
+   ${b(0,"n5",5)}${b(1,"n6",6)}${b(2,"n7",7)}`;
+}
+function why(k){const p=S.topics[view.topic];if(!p.ladderSeen)p.ladderSeen=[];
+  if(!p.ladderSeen[k]){p.ladderSeen[k]=true;addPts(2);}
+  p.ladder[k]=!p.ladder[k];checkBadge();render();}
+
+function upgrade(t){
+  const p=S.topics[t.id];
+  return `<p class="lead">Which answer would get the best score? Choose one.</p>`+
+  t.upgrade.map((u,i)=>{
+    const a=p.upgrade[i];
+    return `<div style="margin-bottom:26px"><p class="q">${i+1}. ${esc(u.q)}</p><div class="opts">
+     ${u.o.map((o,j)=>{let c="";if(a!==undefined){if(j===u.c)c="right";else if(j===a)c="wrong";}
+       return `<button class="opt ${c}" ${a!==undefined?'disabled':''} onclick="pick(${i},${j})">${String.fromCharCode(65+j)}. ${esc(o)}</button>`}).join("")}
+     </div><div class="fb ${a!==undefined?'show '+(a===u.c?'good':'poor'):''}">${a!==undefined?(a===u.c?'✓ Correct. ':'✗ Not this one. ')+esc(u.w):''}</div></div>`}).join("");
+}
+function pick(i,j){const t=curT(),p=S.topics[t.id];if(p.upgrade[i]!==undefined)return;p.upgrade[i]=j;if(j===t.upgrade[i].c){addPts(10);toast("+10 points");}checkBadge();render();}
+
+function gap(t){
+  const g=t.gap,p=S.topics[t.id];
+  const opts=[...g.a,...g.x].sort();
+  let html=esc(g.t).replace(/\{(\d)\}/g,(m,n)=>{
+    const val=p.gapVals?p.gapVals[n]:"";
+    const cls=p.gapTried?(val===g.a[n]?"ok":"no"):"";
+    return `<select aria-label="Gap ${+n+1}" class="${cls}" onchange="gapSet(${n},this.value)"><option value="">— choose —</option>${opts.map(o=>`<option ${val===o?'selected':''}>${esc(o)}</option>`).join("")}</select>`;});
+  return `<p class="lead">Complete the Band 6 answer with the right discussion phrase. Two phrases are not needed.</p>
+   <div class="gap">${html}</div>
+   <div class="nav"><button class="btn ghost" onclick="gapCheck()">Check my answers</button>
+   <span class="count">${p.gap?'✓ All correct — now read it aloud!':''}</span></div>`;
+}
+function gapSet(n,v){const p=S.topics[view.topic];if(!p.gapVals)p.gapVals=["","","",""];p.gapVals[n]=v;}
+function gapCheck(){const t=curT(),p=S.topics[t.id];if(!p.gapVals)p.gapVals=["","","",""];
+  const right=p.gapVals.filter((v,i)=>v===t.gap.a[i]).length;p.gapTried=true;
+  if(right===4&&!p.gap){p.gap=true;addPts(15);toast("+15 points");checkBadge();}
+  else if(right<4)toast(right+" of 4 correct — fix the red ones");
+  render();}
+
+let TMR=null;
+function stopTimer(){if(TMR){clearInterval(TMR);TMR=null;}}
+function speak(t){
+  const p=S.topics[t.id];
+  return `<p class="lead">Answer out loud like the real discussion: 10 seconds to think, then 45 seconds of talking. Give an opinion, a reason, and then an example or the other side.</p>`+
+  t.speak.map((s,i)=>`<div class="speak ${p.speak[i]?'done':''}" id="sp${i}">
+    <div class="bub ex" style="display:inline-block"><small>Examiner</small>${esc(s[0])}</div>
+    <div><span class="starter">💬 Start with: <b>${esc(s[1])}</b></span></div>
+    <div class="timer" id="tb${i}"><i></i></div><div class="tlabel" id="tl${i}"></div>
+    <div class="checks">
+     <label><input type="checkbox"> I answered about people in general, not just myself</label>
+     <label><input type="checkbox"> I gave a reason and an example</label>
+     <label><input type="checkbox"> I used at least one phrase from this skill</label>
+    </div>
+    <div class="nav" style="margin-top:8px"><button class="btn ghost" onclick="runTimer(${i})">▶ Start timer</button>
+     <button class="btn" onclick="spokeDone(${i})">${p.speak[i]?'✓ Done':'I answered it'}</button></div>
+   </div>`).join("");
+}
+function runTimer(i){
+  stopTimer();const bar=document.querySelector("#tb"+i),fill=bar.querySelector("i"),lab=document.getElementById("tl"+i);
+  let phase="think",left=10,total=10;bar.classList.add("think");
+  const tick=()=>{fill.style.width=((total-left)/total*100)+"%";
+    lab.textContent=phase==="think"?`Think… ${left}s`:`Speak now! ${left}s`;
+    if(left<=0){if(phase==="think"){phase="speak";left=45;total=45;bar.classList.remove("think");fill.style.width="0";lab.textContent="Speak now! 45s";return;}
+      stopTimer();lab.textContent="Time's up. How did it go? Tick the boxes.";return;}
+    left--;};
+  tick();TMR=setInterval(tick,1000);
+}
+function spokeDone(i){const p=S.topics[view.topic];if(!p.speak[i]){p.speak[i]=true;addPts(5);checkBadge();}stopTimer();render();}
+
+function checkBadge(){const t=curT();if(!t)return;const p=S.topics[t.id];
+  if(topicPct(t)===1&&!p.badge){p.badge=true;addPts(20);toast("🏅 Skill complete! +20 points");confetti();}}
+
+/* ============ FINAL ============ */
+let F=null;
+function openFinal(){F={i:0,score:0,ans:null,done:false};view={page:"final"};render();window.scrollTo(0,0);}
+function finalPage(){
+  if(F.done){
+    const pct=Math.round(F.score/FINAL.length*100),pass=pct>=80;
+    return `<button class="back" onclick="goHome()">← All skills</button><section class="panel result">
+     <h2>Your result</h2><div class="big">${F.score} / ${FINAL.length}</div><p>${pct}%</p>
+     ${pass?`<p>Excellent! Type your name to get your certificate.</p>
+      <input class="namein" id="nm" placeholder="Your full name" value="${esc(S.name)}" oninput="S.name=this.value;document.getElementById('cn').textContent=this.value||'Your name'">
+      <div class="nav" style="justify-content:center"><button class="btn" onclick="window.print()">Print certificate</button></div>`
+      :`<p>You need 12 out of 15 for the certificate. Review the skills and try again.</p>`}
+     <div class="nav" style="justify-content:center"><button class="btn ghost" onclick="openFinal()">Try again</button></div>
+     <div class="cert ${pass?'show':''}">
+      <div style="font-size:2.4rem">🏆</div><h2>Certificate of Achievement</h2>
+      <p>This certifies that</p><div class="nm" id="cn">${esc(S.name)||'Your name'}</div>
+      <p>has completed <b>IELTS Speaking Lesson 4: Think Out Loud</b><br>(Part 3 discussion language) with a score of <b>${F.score}/${FINAL.length}</b>.</p>
+      <p style="color:var(--soft)">${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
+      <p style="margin-top:24px;font-size:.9rem">Designed by: Nazila Motahari</p>
+     </div></section>`;
+  }
+  const q=FINAL[F.i];
+  return `<button class="back" onclick="goHome()">← All skills</button>
+   <section class="panel"><div class="count">Question ${F.i+1} of ${FINAL.length} · Score ${F.score}</div>
+   <p class="q" style="margin-top:10px">${esc(q.q)}</p>
+   <div class="opts">${q.o.map((o,j)=>{let c="";if(F.ans!==null){if(j===q.c)c="right";else if(j===F.ans)c="wrong";}
+     return `<button class="opt ${c}" ${F.ans!==null?'disabled':''} onclick="fpick(${j})">${String.fromCharCode(65+j)}. ${esc(o)}</button>`}).join("")}</div>
+   <div class="nav"><span></span><button class="btn" ${F.ans===null?'disabled':''} onclick="fnext()">${F.i===FINAL.length-1?'See my result':'Next question'}</button></div></section>`;
+}
+function fpick(j){if(F.ans!==null)return;F.ans=j;if(j===FINAL[F.i].c){F.score++;addPts(5);}render();}
+function fnext(){if(F.i<FINAL.length-1){F.i++;F.ans=null;}else{F.done=true;if(F.score>S.final.best)S.final.best=F.score;if(F.score/FINAL.length>=.8)confetti();}render();}
+
+/* ============ SAVE / LOAD ============ */
+function saveJSON(){const b=new Blob([JSON.stringify({app:"speaking-4",saved:new Date().toISOString(),state:S},null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="speaking-lesson4-progress.json";a.click();toast("Progress saved to your downloads");}
+function loadJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);if(d.app!=="speaking-4"||!d.state)throw 0;S=Object.assign(blank(),d.state);
+    TOPICS.forEach(t=>{if(!S.topics[t.id])S.topics[t.id]=blank().topics[t.id];});
+    addPts(0);render();toast("Progress loaded");}catch(_){toast("This file is not a Speaking 4 progress file");}};
+  r.readAsText(f);e.target.value="";}
+
+/* ============ CONFETTI ============ */
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const c=document.getElementById("confetti"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;
+  const cols=["#53357D","#C04A2E","#E7DDF6","#9A7FC4","#FBE7E0"];
+  const ps=Array.from({length:140},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,r:4+Math.random()*6,vy:2+Math.random()*3,vx:-1.5+Math.random()*3,a:Math.random()*6,col:cols[Math.random()*cols.length|0]}));
+  let f=0;(function loop(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.a+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.col;x.fillRect(-p.r,-p.r/2,p.r*2,p.r);x.restore();});
+    if(++f<200)requestAnimationFrame(loop);else x.clearRect(0,0,c.width,c.height);})();
+}
+
+/* ============ RENDER ============ */
+function render(){
+  const app=document.getElementById("app");
+  app.innerHTML=view.page==="home"?home():view.page==="topic"?topicPage():finalPage();
+}
+render();
+</script>
+</body>
+</html>
